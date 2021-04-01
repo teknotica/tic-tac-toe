@@ -11,6 +11,11 @@ type Cell = {
   y: number;
 };
 
+type PlayedBy = {
+  playedByA: boolean;
+  playedByB: boolean;
+};
+
 const TicTacToe: FC = () => {
   const styles = useStyles();
   const [playerMovesA, setPlayerMovesA] = useState<Cell[]>([]);
@@ -18,17 +23,43 @@ const TicTacToe: FC = () => {
 
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_A);
 
-  const saveMove = (x: number, y: number) => {
-    const lastCell = { x, y };
-
+  const saveMove = (cell: Cell) => {
     if (currentPlayer === PLAYER_A) {
-      setPlayerMovesA([...playerMovesA, lastCell]);
+      setPlayerMovesA([...playerMovesA, cell]);
       setCurrentPlayer(PLAYER_B);
       return;
     }
 
-    setPlayerMovesB([...playerMovesB, lastCell]);
+    setPlayerMovesB([...playerMovesB, cell]);
     setCurrentPlayer(PLAYER_A);
+  };
+
+  const playedBy = (cell: Cell): PlayedBy => {
+    const cellInPlayerA = !!playerMovesA.find(
+      (c) => c.x === cell.x && c.y === cell.y
+    );
+
+    if (cellInPlayerA) {
+      return {
+        playedByA: true,
+        playedByB: false,
+      };
+    } else {
+      const cellInPlayerB = !!playerMovesB.find(
+        (c) => c.x === cell.x && c.y === cell.y
+      );
+      if (cellInPlayerB) {
+        return {
+          playedByA: false,
+          playedByB: true,
+        };
+      }
+    }
+
+    return {
+      playedByA: false,
+      playedByB: false,
+    };
   };
 
   return (
@@ -39,13 +70,13 @@ const TicTacToe: FC = () => {
             {[...Array(3)].map((value, x) => (
               <div key={x} css={styles.cell}>
                 <button
-                  css={styles.button}
+                  css={styles.button(playedBy({ x, y }))}
                   disabled={
                     !![...playerMovesA, ...playerMovesB].find(
                       (cell) => cell.x === x && cell.y === y
                     )
                   }
-                  onClick={() => saveMove(x, y)}
+                  onClick={() => saveMove({ x, y })}
                 >
                   {x},{y}
                 </button>

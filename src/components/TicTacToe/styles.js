@@ -17,10 +17,20 @@ export default () => {
       grid-template-rows: repeat(3, 150px);
     `,
     cell: css``,
-    button: css`
+    button: ({ playedByA, playedByB }) => css`
       cursor: pointer;
       width: 100%;
       height: 100%;
+
+      ${playedByA &&
+      css`
+        background-color: red;
+      `}
+
+      ${playedByB &&
+      css`
+        background-color: green;
+      `}
     `,
   };
 };
