@@ -3,17 +3,12 @@ import { useState, FC } from "react";
 
 import useStyles from "./styles";
 
-const PLAYER_A = 0;
-const PLAYER_B = 1;
+export const PLAYER_A = "player_a";
+export const PLAYER_B = "player_b";
 
 type Cell = {
   x: number;
   y: number;
-};
-
-type PlayedBy = {
-  playedByA: boolean;
-  playedByB: boolean;
 };
 
 const TicTacToe: FC = () => {
@@ -34,34 +29,6 @@ const TicTacToe: FC = () => {
     setCurrentPlayer(PLAYER_A);
   };
 
-  const playedBy = (cell: Cell): PlayedBy => {
-    const cellInPlayerA = !!playerMovesA.find(
-      (c) => c.x === cell.x && c.y === cell.y
-    );
-
-    if (cellInPlayerA) {
-      return {
-        playedByA: true,
-        playedByB: false,
-      };
-    } else {
-      const cellInPlayerB = !!playerMovesB.find(
-        (c) => c.x === cell.x && c.y === cell.y
-      );
-      if (cellInPlayerB) {
-        return {
-          playedByA: false,
-          playedByB: true,
-        };
-      }
-    }
-
-    return {
-      playedByA: false,
-      playedByB: false,
-    };
-  };
-
   return (
     <div css={styles.root}>
       <div css={styles.grid}>
@@ -70,13 +37,16 @@ const TicTacToe: FC = () => {
             {[...Array(3)].map((value, x) => (
               <div key={x} css={styles.cell}>
                 <button
-                  css={styles.button(playedBy({ x, y }))}
+                  css={styles.button}
                   disabled={
                     !![...playerMovesA, ...playerMovesB].find(
                       (cell) => cell.x === x && cell.y === y
                     )
                   }
-                  onClick={() => saveMove({ x, y })}
+                  onClick={(event) => {
+                    event.currentTarget.classList.add(currentPlayer);
+                    saveMove({ x, y });
+                  }}
                 >
                   {x},{y}
                 </button>

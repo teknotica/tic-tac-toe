@@ -1,5 +1,7 @@
 import { css } from "@emotion/react";
 
+import { PLAYER_A, PLAYER_B } from "./index";
+
 export default () => {
   return {
     root: css`
@@ -17,20 +19,18 @@ export default () => {
       grid-template-rows: repeat(3, 150px);
     `,
     cell: css``,
-    button: ({ playedByA, playedByB }) => css`
+    button: css`
       cursor: pointer;
       width: 100%;
       height: 100%;
 
-      ${playedByA &&
-      css`
+      &.${PLAYER_A} {
         background-color: red;
-      `}
+      }
 
-      ${playedByB &&
-      css`
-        background-color: green;
-      `}
+      &.${PLAYER_B} {
+        background-color: blue;
+      }
     `,
   };
 };
