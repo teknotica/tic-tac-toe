@@ -1,32 +1,59 @@
 /** @jsxImportSource @emotion/react */
-import { useState, FC } from "react";
+import { useState, useEffect, FC } from "react";
 
+import checkWinner from "../../utils/checkWinner";
 import useStyles from "./styles";
 
 export const PLAYER_A = "player_a";
 export const PLAYER_B = "player_b";
 
-type Cell = {
+export type Players = "player_a" | "player_b";
+
+export type Cell = {
   x: number;
   y: number;
 };
 
+export type PlayersMoves = {
+  [PLAYER_A]: Cell[];
+  [PLAYER_B]: Cell[];
+};
+
 const TicTacToe: FC = () => {
   const styles = useStyles();
-  const [playerMovesA, setPlayerMovesA] = useState<Cell[]>([]);
-  const [playerMovesB, setPlayerMovesB] = useState<Cell[]>([]);
+  const [currentPlayer, setCurrentPlayer] = useState<Players>(PLAYER_A);
+  const [winnerPlayer, setWinnerPlayer] = useState<Players>();
+  const [playersMoves, setPlayersMoves] = useState<PlayersMoves>({
+    [PLAYER_A]: [],
+    [PLAYER_B]: [],
+  });
 
-  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_A);
+  useEffect(() => {
+    const lastPlayerMoves =
+      playersMoves[currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A];
+
+    // Check for winner if they have 3+ moves
+    if (lastPlayerMoves.length >= 3) {
+      const isWinner = checkWinner(lastPlayerMoves);
+
+      if (isWinner) {
+        setWinnerPlayer(currentPlayer);
+      }
+    }
+  }, [playersMoves, currentPlayer]);
 
   const saveMove = (cell: Cell) => {
-    if (currentPlayer === PLAYER_A) {
-      setPlayerMovesA([...playerMovesA, cell]);
-      setCurrentPlayer(PLAYER_B);
-      return;
-    }
+    const currentPlayerMoves = playersMoves[currentPlayer];
 
-    setPlayerMovesB([...playerMovesB, cell]);
-    setCurrentPlayer(PLAYER_A);
+    // Merge values to main object
+    setPlayersMoves({
+      ...playersMoves,
+      ...{ [currentPlayer]: [...currentPlayerMoves, cell] },
+    });
+
+    // Switch player for next move
+    const nextPlayer = currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A;
+    setCurrentPlayer(nextPlayer);
   };
 
   return (
@@ -39,9 +66,11 @@ const TicTacToe: FC = () => {
                 <button
                   css={styles.button}
                   disabled={
-                    !![...playerMovesA, ...playerMovesB].find(
-                      (cell) => cell.x === x && cell.y === y
-                    )
+                    !![
+                      ...playersMoves[PLAYER_A],
+                      ...playersMoves[PLAYER_B],
+                    ].find((cell) => cell.x === x && cell.y === y) ||
+                    !!winnerPlayer
                   }
                   onClick={(event) => {
                     event.currentTarget.classList.add(currentPlayer);
@@ -55,14 +84,7 @@ const TicTacToe: FC = () => {
           </div>
         ))}
       </div>
-      <h2>Player A</h2>
-      <div>
-        <pre>{JSON.stringify(playerMovesA)}</pre>
-      </div>
-      <h2>Player B</h2>
-      <div>
-        <pre>{JSON.stringify(playerMovesB)}</pre>
-      </div>
+      {winnerPlayer && <h1>You win!</h1>}
     </div>
   );
 };
