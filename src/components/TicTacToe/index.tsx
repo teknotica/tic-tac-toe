@@ -4,6 +4,7 @@ import { useState, useEffect, FC } from "react";
 import checkWinner from "../../utils/checkWinner";
 import useStyles from "./styles";
 
+const MAX_MOVES = 9;
 export const PLAYER_A = "player_a";
 export const PLAYER_B = "player_b";
 
@@ -28,9 +29,11 @@ const TicTacToe: FC = () => {
   const styles = useStyles();
   const [currentPlayer, setCurrentPlayer] = useState<Players>(PLAYER_A);
   const [winnerPlayer, setWinnerPlayer] = useState<Players>();
+  const [winnerLine, setWinnerLine] = useState<Cell[]>();
   const [playersMoves, setPlayersMoves] = useState<PlayersMoves>(
     initialMovesState
   );
+  const allMoves = [...playersMoves[PLAYER_A], ...playersMoves[PLAYER_B]];
 
   useEffect(() => {
     const lastPlayer = currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A;
@@ -38,9 +41,10 @@ const TicTacToe: FC = () => {
 
     // Check for winner if they have 3+ moves
     if (lastPlayerMoves.length >= 3) {
-      const isWinner = checkWinner(lastPlayerMoves);
+      const winnerLine = checkWinner(lastPlayerMoves);
 
-      if (isWinner) {
+      if (winnerLine && !!winnerLine.length) {
+        setWinnerLine(winnerLine);
         setWinnerPlayer(lastPlayer);
       }
     }
@@ -73,6 +77,7 @@ const TicTacToe: FC = () => {
   const resetGame = () => {
     setPlayersMoves(initialMovesState);
     setWinnerPlayer(undefined);
+    setWinnerLine(undefined);
     setCurrentPlayer(PLAYER_A);
     resetButtonClasses();
   };
@@ -82,6 +87,9 @@ const TicTacToe: FC = () => {
       <h1>Tic Tac Toe</h1>
       <div css={styles.header}>
         {winnerPlayer && <h1>You win {winnerPlayer}!</h1>}
+        {allMoves.length === MAX_MOVES && !winnerPlayer && (
+          <h1>No one wins :(</h1>
+        )}
         <button onClick={resetGame}>Reset game</button>
       </div>
       <div id="grid" css={styles.grid}>
@@ -90,21 +98,21 @@ const TicTacToe: FC = () => {
             {[...Array(3)].map((value, x) => (
               <div key={x} css={styles.cell}>
                 <button
-                  css={styles.button}
+                  css={styles.button(
+                    winnerPlayer,
+                    winnerLine &&
+                      !!winnerLine.find((cell) => cell.x === x && cell.y === y)
+                  )}
+                  arial-label={`cell in position ${x}${y}`}
                   disabled={
-                    !![
-                      ...playersMoves[PLAYER_A],
-                      ...playersMoves[PLAYER_B],
-                    ].find((cell) => cell.x === x && cell.y === y) ||
+                    !!allMoves.find((cell) => cell.x === x && cell.y === y) ||
                     !!winnerPlayer
                   }
                   onClick={(event) => {
                     event.currentTarget.classList.add(currentPlayer);
                     saveMove({ x, y });
                   }}
-                >
-                  {x},{y}
-                </button>
+                />
               </div>
             ))}
           </div>

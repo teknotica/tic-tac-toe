@@ -26,5 +26,5 @@ export default (moves: Cell[]) => {
     return found;
   });
 
-  return !!winnerLine.length;
+  return winnerLine[0];
 }

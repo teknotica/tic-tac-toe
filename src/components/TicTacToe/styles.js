@@ -21,18 +21,42 @@ export default () => {
       grid-template-rows: repeat(3, 150px);
     `,
     cell: css``,
-    button: css`
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
+    button: (winnerPlayer, isWinnerCell) => {
+      return css`
+        position: relative;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
 
-      &.${PLAYER_A} {
-        background-color: red;
-      }
+        ${isWinnerCell &&
+        css`
+          background-color: yellow;
 
-      &.${PLAYER_B} {
-        background-color: blue;
-      }
-    `,
+          &::before {
+            content: "${winnerPlayer === PLAYER_A ? "X" : "O"}";
+            color: ${winnerPlayer === PLAYER_A ? "blue" : "red"};
+          }
+        `}
+
+        &::before {
+          font-size: 3rem;
+          transform: translate(50% 50%);
+        }
+
+        &.${PLAYER_A} {
+          &::before {
+            content: "X";
+            color: blue;
+          }
+        }
+
+        &.${PLAYER_B} {
+          &::before {
+            content: "O";
+            color: red;
+          }
+        }
+      `;
+    },
   };
 };
