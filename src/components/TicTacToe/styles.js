@@ -7,9 +7,11 @@ export default () => {
     root: css`
       height: 100%;
       display: grid;
+      grid-template-rows: 50px 50px minmax(auto, 500px);
       justify-content: center;
       align-items: center;
     `,
+    header: css``,
     grid: css`
       display: grid;
       grid-template-columns: repeat(3, 150px);

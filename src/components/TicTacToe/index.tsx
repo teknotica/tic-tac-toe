@@ -7,6 +7,11 @@ import useStyles from "./styles";
 export const PLAYER_A = "player_a";
 export const PLAYER_B = "player_b";
 
+const initialMovesState = {
+  [PLAYER_A]: [],
+  [PLAYER_B]: [],
+};
+
 export type Players = "player_a" | "player_b";
 
 export type Cell = {
@@ -23,21 +28,20 @@ const TicTacToe: FC = () => {
   const styles = useStyles();
   const [currentPlayer, setCurrentPlayer] = useState<Players>(PLAYER_A);
   const [winnerPlayer, setWinnerPlayer] = useState<Players>();
-  const [playersMoves, setPlayersMoves] = useState<PlayersMoves>({
-    [PLAYER_A]: [],
-    [PLAYER_B]: [],
-  });
+  const [playersMoves, setPlayersMoves] = useState<PlayersMoves>(
+    initialMovesState
+  );
 
   useEffect(() => {
-    const lastPlayerMoves =
-      playersMoves[currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A];
+    const lastPlayer = currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A;
+    const lastPlayerMoves = playersMoves[lastPlayer];
 
     // Check for winner if they have 3+ moves
     if (lastPlayerMoves.length >= 3) {
       const isWinner = checkWinner(lastPlayerMoves);
 
       if (isWinner) {
-        setWinnerPlayer(currentPlayer);
+        setWinnerPlayer(lastPlayer);
       }
     }
   }, [playersMoves, currentPlayer]);
@@ -56,10 +60,31 @@ const TicTacToe: FC = () => {
     setCurrentPlayer(nextPlayer);
   };
 
+  const resetButtonClasses = () => {
+    const buttons = document.getElementById("grid")?.querySelectorAll("button");
+
+    if (buttons) {
+      buttons.forEach((button) => {
+        button.classList.remove("player_a", "player_b");
+      });
+    }
+  };
+
+  const resetGame = () => {
+    setPlayersMoves(initialMovesState);
+    setWinnerPlayer(undefined);
+    setCurrentPlayer(PLAYER_A);
+    resetButtonClasses();
+  };
+
   return (
     <div css={styles.root}>
-      {winnerPlayer && <h1>You win!</h1>}
-      <div css={styles.grid}>
+      <h1>Tic Tac Toe</h1>
+      <div css={styles.header}>
+        {winnerPlayer && <h1>You win {winnerPlayer}!</h1>}
+        <button onClick={resetGame}>Reset game</button>
+      </div>
+      <div id="grid" css={styles.grid}>
         {[...Array(3)].map((value, y) => (
           <div key={y} css={styles.row}>
             {[...Array(3)].map((value, x) => (
