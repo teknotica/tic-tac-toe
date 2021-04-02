@@ -58,6 +58,7 @@ const TicTacToe: FC = () => {
 
   return (
     <div css={styles.root}>
+      {winnerPlayer && <h1>You win!</h1>}
       <div css={styles.grid}>
         {[...Array(3)].map((value, y) => (
           <div key={y} css={styles.row}>
@@ -84,7 +85,6 @@ const TicTacToe: FC = () => {
           </div>
         ))}
       </div>
-      {winnerPlayer && <h1>You win!</h1>}
     </div>
   );
 };

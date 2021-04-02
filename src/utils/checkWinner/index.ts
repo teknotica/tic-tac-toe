@@ -13,12 +13,14 @@ const winnerLines = [
 
 export default (moves: Cell[]) => {
   const winnerLine = winnerLines.filter(lineArray => {
-    let found = true;
+    let found = false;
+
     for (let index = 0; index < lineArray.length; index++) {
       const cell = lineArray[index];
       const cellInMoves = moves.find(move => move.x === cell.x && move.y === cell.y);
-      if (!cellInMoves) {
-        found = false;
+      
+      if (cellInMoves) {
+        found = true;
       }
     }
     return found;
