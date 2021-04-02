@@ -1,8 +1,7 @@
-import { css, Global } from '@emotion/react';
-import React from 'react';
+import { css, Global } from "@emotion/react";
+import React from "react";
 
 const GlobalStyles = () => {
-
   return (
     <Global
       styles={css`
@@ -13,16 +12,19 @@ const GlobalStyles = () => {
           -webkit-text-size-adjust: 100%;
         }
         body {
+          font-family: "Playfair Display", serif;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
           margin: 0;
         }
         html,
         body,
-        #root,
-        .container,
-        #main {
+        #root {
           height: 100%;
+        }
+        h1,
+        h2 {
+          margin: 0;
         }
       `}
     />

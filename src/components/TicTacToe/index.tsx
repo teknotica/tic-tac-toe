@@ -86,7 +86,7 @@ const TicTacToe: FC = () => {
     <div css={styles.root}>
       <h1>Tic Tac Toe</h1>
       <div css={styles.header}>
-        {winnerPlayer && <h1>You win {winnerPlayer}!</h1>}
+        {winnerPlayer && <h1>{winnerPlayer} wins!</h1>}
         {allMoves.length === MAX_MOVES && !winnerPlayer && (
           <h1>No one wins :(</h1>
         )}
