@@ -1,6 +1,7 @@
-import { Fragment } from 'react';
-import TicTacToe from './components/TicTacToe';
-import GlobalStyles from './components/GlobalStyles';
+import { Fragment } from "react";
+
+import GlobalStyles from "./components/GlobalStyles";
+import TicTacToe from "./components/TicTacToe";
 
 const App = () => (
   <Fragment>
