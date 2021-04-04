@@ -21,12 +21,15 @@ export default () => {
     root: css`
       height: 100%;
       display: grid;
-      grid-template-rows: 50px 50px minmax(auto, 500px);
+      grid-template-rows: 50px 50px minmax(auto, 400px);
       justify-content: center;
-      align-items: center;
+      align-content: center;
+      text-align: center;
       background-color: #f3e7de;
     `,
-    header: css``,
+    header: css`
+      text-align: center;
+    `,
     grid: css`
       display: grid;
       grid-template-columns: repeat(3, minmax(90px, 115px));
@@ -47,16 +50,16 @@ export default () => {
       css`
         background-color: #f1e1ff;
 
-        &::before {
+        /* &::before {
           content: "${playersConfig[winnerPlayer].tag}";
           color: ${playersConfig[winnerPlayer].color};
-        }
+        } */
       `}
 
       &::before {
         font-size: 4rem;
       }
-
+      /* 
       &.${PLAYER_A} {
         &::before {
           content: "${playersConfig[PLAYER_A].tag}";
@@ -69,7 +72,7 @@ export default () => {
           content: "${playersConfig[PLAYER_B].tag}";
           color: ${playersConfig[PLAYER_B].color};
         }
-      }
+      } */
     `,
   };
 };

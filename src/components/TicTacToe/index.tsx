@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect, FC } from "react";
 
+import GridItem from "../GridItem";
 import checkWinner from "../../utils/checkWinner";
 import useStyles from "./styles";
 
@@ -82,11 +83,19 @@ const TicTacToe: FC = () => {
     resetButtonClasses();
   };
 
+  const isPlayedBy = (currentCell: Cell, player: Players) => {
+    const cellInMoves = !!playersMoves[player].find(
+      (move) => move.x === currentCell.x && move.y === currentCell.y
+    );
+
+    // Doing this to prevent React complaining about non-booleans attributes
+    return cellInMoves ? 1 : 0;
+  };
+
   return (
     <div css={styles.root}>
       <h1>Tic Tac Toe</h1>
       <div css={styles.header}>
-        {winnerPlayer && <h1>{winnerPlayer} wins!</h1>}
         {allMoves.length === MAX_MOVES && !winnerPlayer && (
           <h1>No one wins :(</h1>
         )}
@@ -97,21 +106,23 @@ const TicTacToe: FC = () => {
           <div key={y} css={styles.row}>
             {[...Array(3)].map((value, x) => (
               <div key={x} css={styles.cell}>
-                <button
+                <GridItem
+                  arial-label={`Cell in position ${x}${y}`}
                   css={styles.button(
                     winnerPlayer,
                     winnerLine &&
                       !!winnerLine.find((cell) => cell.x === x && cell.y === y)
                   )}
-                  arial-label={`cell in position ${x}${y}`}
                   disabled={
                     !!allMoves.find((cell) => cell.x === x && cell.y === y) ||
                     !!winnerPlayer
                   }
-                  onClick={(event) => {
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                     event.currentTarget.classList.add(currentPlayer);
                     saveMove({ x, y });
                   }}
+                  playedbya={isPlayedBy({ x, y }, PLAYER_A)}
+                  playedbyb={isPlayedBy({ x, y }, PLAYER_B)}
                 />
               </div>
             ))}
