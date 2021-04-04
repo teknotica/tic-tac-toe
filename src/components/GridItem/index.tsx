@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { CircleIcon, EquisIcon } from "../Icons";
 import { PLAYER_A, PLAYER_B } from "../../const";
 import useTheme from "../../hooks/useTheme";
-
+import { CircleIcon, EquisIcon } from "../Icons";
 import useStyles from "./styles";
 
 const GridItem = ({ ...props }) => {

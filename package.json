@@ -29,9 +29,30 @@
       "react-app",
       "react-app/jest"
     ],
+    "plugins": [
+      "simple-import-sort"
+    ],
     "rules": {
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "sort-imports": "off",
+      "import/order": "off",
       "import/no-anonymous-default-export": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": "server/**/*.js",
+        "rules": {
+          "simple-import-sort/imports": "off",
+          "import/order": [
+            "error",
+            {
+              "newlines-between": "always"
+            }
+          ]
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -44,5 +65,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-simple-import-sort": "^7.0.0"
   }
 }

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { useState, useEffect, FC } from "react";
-import { MAX_MOVES, PLAYER_A, PLAYER_B } from "../../const";
+import { FC, useEffect, useState } from "react";
 
-import GridItem from "../GridItem";
+import { MAX_MOVES, PLAYER_A, PLAYER_B } from "../../const";
 import checkWinner from "../../utils/checkWinner";
+import GridItem from "../GridItem";
 import useStyles from "./styles";
 
 const initialMovesState = {
