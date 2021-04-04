@@ -1,13 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect, FC } from "react";
+import { MAX_MOVES, PLAYER_A, PLAYER_B } from "../../const";
 
 import GridItem from "../GridItem";
 import checkWinner from "../../utils/checkWinner";
 import useStyles from "./styles";
-
-const MAX_MOVES = 9;
-export const PLAYER_A = "player_a";
-export const PLAYER_B = "player_b";
 
 const initialMovesState = {
   [PLAYER_A]: [],
@@ -97,6 +94,11 @@ const TicTacToe: FC = () => {
     <div css={styles.root}>
       <h1>Tic Tac Toe</h1>
       <div css={styles.header}>
+        {!winnerPlayer && allMoves.length < MAX_MOVES && (
+          <h2>
+            Currently playing: <span css={styles.moveShape(currentPlayer)} />
+          </h2>
+        )}
         {allMoves.length === MAX_MOVES && !winnerPlayer && (
           <h2>
             No one wins{" "}
