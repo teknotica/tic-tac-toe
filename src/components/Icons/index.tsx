@@ -8,11 +8,11 @@ export const CircleIcon = ({ color = "currentColor", ...props }) => {
     from: {
       scale: 10,
       opacity: 0,
-      transform: "scale(0.9)",
+      transform: "scale(0.8)",
       freq: "0.0175, 0.0",
     },
     to: { scale: 150, opacity: 1, transform: "scale(1)", freq: "0.0, 0.0" },
-    config: { duration: 1000 },
+    config: { duration: 250 },
   });
 
   return (
@@ -22,7 +22,6 @@ export const CircleIcon = ({ color = "currentColor", ...props }) => {
       width={60}
       height={60}
       viewBox="0 -256 1792 1792"
-      color={color}
       {...props}
     >
       <defs>
@@ -59,19 +58,18 @@ export const EquisIcon = ({ color = "currentColor", ...props }) => {
     from: {
       scale: 10,
       opacity: 0,
-      transform: "scale(0.9)",
+      transform: "scale(0.8)",
       freq: "0.0175, 0.0",
     },
     to: { scale: 150, opacity: 1, transform: "scale(1)", freq: "0.0, 0.0" },
-    config: { duration: 1000 },
+    config: { duration: 250 },
   });
 
   return (
     <animated.svg
       style={{ transform, opacity }}
-      color={color}
-      width={60}
-      height={60}
+      width={50}
+      height={50}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 460.775 460.775"
       {...props}
@@ -96,7 +94,10 @@ export const EquisIcon = ({ color = "currentColor", ...props }) => {
         </filter>
       </defs>
       <g filter="url(#water)">
-        <animated.path d="M285.08 230.397L456.218 59.27c6.076-6.077 6.076-15.911 0-21.986L423.511 4.565a15.55 15.55 0 00-21.985 0l-171.138 171.14L59.25 4.565a15.551 15.551 0 00-21.985 0L4.558 37.284c-6.077 6.075-6.077 15.909 0 21.986l171.138 171.128L4.575 401.505c-6.074 6.077-6.074 15.911 0 21.986l32.709 32.719a15.555 15.555 0 0021.986 0l171.117-171.12 171.118 171.12a15.551 15.551 0 0021.985 0l32.709-32.719c6.074-6.075 6.074-15.909 0-21.986L285.08 230.397z" />
+        <animated.path
+          d="M285.08 230.397L456.218 59.27c6.076-6.077 6.076-15.911 0-21.986L423.511 4.565a15.55 15.55 0 00-21.985 0l-171.138 171.14L59.25 4.565a15.551 15.551 0 00-21.985 0L4.558 37.284c-6.077 6.075-6.077 15.909 0 21.986l171.138 171.128L4.575 401.505c-6.074 6.077-6.074 15.911 0 21.986l32.709 32.719a15.555 15.555 0 0021.986 0l171.117-171.12 171.118 171.12a15.551 15.551 0 0021.985 0l32.709-32.719c6.074-6.075 6.074-15.909 0-21.986L285.08 230.397z"
+          fill={color}
+        />
       </g>
     </animated.svg>
   );

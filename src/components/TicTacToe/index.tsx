@@ -65,22 +65,11 @@ const TicTacToe: FC = () => {
     setCurrentPlayer(nextPlayer);
   };
 
-  const resetButtonClasses = () => {
-    const buttons = document.getElementById("grid")?.querySelectorAll("button");
-
-    if (buttons) {
-      buttons.forEach((button) => {
-        button.classList.remove("player_a", "player_b");
-      });
-    }
-  };
-
   const resetGame = () => {
     setPlayersMoves(initialMovesState);
     setWinnerPlayer(undefined);
     setWinnerLine(undefined);
     setCurrentPlayer(PLAYER_A);
-    resetButtonClasses();
   };
 
   const isPlayedBy = (currentCell: Cell, player: Players) => {
@@ -88,8 +77,20 @@ const TicTacToe: FC = () => {
       (move) => move.x === currentCell.x && move.y === currentCell.y
     );
 
-    // Doing this to prevent React complaining about non-booleans attributes
+    // Prevents React complaining about non-booleans attributes
     return cellInMoves ? 1 : 0;
+  };
+
+  const checkIsWinnerCell = (currentCell: Cell) => {
+    const isWinnerCell =
+      winnerLine &&
+      !!winnerLine.find(
+        (winnerCell) =>
+          winnerCell.x === currentCell.x && winnerCell.y === currentCell.y
+      );
+
+    // Prevents React complaining about non-booleans attributes
+    return isWinnerCell ? 1 : 0;
   };
 
   return (
@@ -97,7 +98,20 @@ const TicTacToe: FC = () => {
       <h1>Tic Tac Toe</h1>
       <div css={styles.header}>
         {allMoves.length === MAX_MOVES && !winnerPlayer && (
-          <h1>No one wins :(</h1>
+          <h2>
+            No one wins{" "}
+            <span role="img" aria-label="Sad face">
+              😭
+            </span>
+          </h2>
+        )}
+        {winnerPlayer && (
+          <h2>
+            You win!{" "}
+            <span role="img" aria-label="Smiley face">
+              😬
+            </span>
+          </h2>
         )}
         <button onClick={resetGame}>Reset game</button>
       </div>
@@ -105,22 +119,15 @@ const TicTacToe: FC = () => {
         {[...Array(3)].map((value, y) => (
           <div key={y} css={styles.row}>
             {[...Array(3)].map((value, x) => (
-              <div key={x} css={styles.cell}>
+              <div key={x}>
                 <GridItem
                   arial-label={`Cell in position ${x}${y}`}
-                  css={styles.button(
-                    winnerPlayer,
-                    winnerLine &&
-                      !!winnerLine.find((cell) => cell.x === x && cell.y === y)
-                  )}
                   disabled={
                     !!allMoves.find((cell) => cell.x === x && cell.y === y) ||
                     !!winnerPlayer
                   }
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                    event.currentTarget.classList.add(currentPlayer);
-                    saveMove({ x, y });
-                  }}
+                  onClick={() => saveMove({ x, y })}
+                  iswinnercell={checkIsWinnerCell({ x, y })}
                   playedbya={isPlayedBy({ x, y }, PLAYER_A)}
                   playedbyb={isPlayedBy({ x, y }, PLAYER_B)}
                 />
