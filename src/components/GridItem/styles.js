@@ -11,7 +11,7 @@ export default () => ({
 
     ${iswinnercell &&
     css`
-      background-color: #f1e1ff;
+      background-color: #91eb95;
     `}
 
     &::before {

@@ -1,26 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { FC, useEffect, useState } from "react";
 
-import { MAX_MOVES, PLAYER_A, PLAYER_B } from "../../const";
+import { PLAYER_A, PLAYER_B } from "../../const";
+import { Cell, Players, PlayersMoves } from "../../types";
 import checkWinner from "../../utils/checkWinner";
 import GridItem from "../GridItem";
+import Header from "../Header";
 import useStyles from "./styles";
 
 const initialMovesState = {
   [PLAYER_A]: [],
   [PLAYER_B]: [],
-};
-
-export type Players = "player_a" | "player_b";
-
-export type Cell = {
-  x: number;
-  y: number;
-};
-
-export type PlayersMoves = {
-  [PLAYER_A]: Cell[];
-  [PLAYER_B]: Cell[];
 };
 
 const TicTacToe: FC = () => {
@@ -92,31 +82,12 @@ const TicTacToe: FC = () => {
 
   return (
     <div css={styles.root}>
-      <h1>Tic Tac Toe</h1>
-      <div css={styles.header}>
-        {!winnerPlayer && allMoves.length < MAX_MOVES && (
-          <h2>
-            Currently playing: <span css={styles.moveShape(currentPlayer)} />
-          </h2>
-        )}
-        {allMoves.length === MAX_MOVES && !winnerPlayer && (
-          <h2>
-            No one wins{" "}
-            <span role="img" aria-label="Sad face">
-              😭
-            </span>
-          </h2>
-        )}
-        {winnerPlayer && (
-          <h2>
-            You win!{" "}
-            <span role="img" aria-label="Smiley face">
-              😬
-            </span>
-          </h2>
-        )}
-        <button onClick={resetGame}>Reset game</button>
-      </div>
+      <Header
+        title="Tic Tac Toe"
+        currentPlayer={currentPlayer}
+        winnerPlayer={winnerPlayer}
+        allMoves={allMoves}
+      />
       <div id="grid" css={styles.grid}>
         {[...Array(3)].map((value, y) => (
           <div key={y} css={styles.row}>
@@ -138,6 +109,9 @@ const TicTacToe: FC = () => {
           </div>
         ))}
       </div>
+      <button css={styles.resetBtn} onClick={resetGame}>
+        [Reset game]
+      </button>
     </div>
   );
 };
