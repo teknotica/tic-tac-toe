@@ -99,7 +99,7 @@ export const WatermelonIcon = ({ ...props }) => {
       {...props}
     >
       <defs>
-        <filter id="water">
+        <filter id="water-2">
           <AnimFeTurbulence
             type="fractalNoise"
             baseFrequency={freq}
@@ -117,7 +117,7 @@ export const WatermelonIcon = ({ ...props }) => {
           />
         </filter>
       </defs>
-      <g filter="url(#water)">
+      <g filter="url(#water-2)">
         <switch>
           <g>
             <g

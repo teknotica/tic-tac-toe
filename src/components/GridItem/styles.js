@@ -10,10 +10,13 @@ export default () => ({
     border: 1px solid lightgray;
     background-color: transparent;
 
+    svg {
+      display: inline-block;
+    }
+
     ${iswinnercell &&
     css`
-      border-color: #784976;
-      border-style: dashed;
+      background-color: #91eb95;
     `}
 
     &::before {
