@@ -12,7 +12,8 @@ export default () => ({
 
     ${iswinnercell &&
     css`
-      background-color: #91eb95;
+      border-color: #784976;
+      border-style: dashed;
     `}
 
     &::before {
