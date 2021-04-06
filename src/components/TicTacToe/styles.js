@@ -8,7 +8,17 @@ export default () => ({
     justify-content: center;
     align-content: center;
     text-align: center;
-    background-color: #f3e7de;
+    background: #b993d6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #8ca6db,
+      #b993d6
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #8ca6db,
+      #b993d6
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   `,
   header: css`
     text-align: center;

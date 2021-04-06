@@ -3,7 +3,7 @@ import { animated, useSpring } from "react-spring";
 const AnimFeTurbulence = animated("feTurbulence");
 const AnimFeDisplacementMap = animated("feDisplacementMap");
 
-export const PeachIcon = ({ ...props }) => {
+export const PeachIcon = ({ width = 50, height = 50, ...props }) => {
   const { freq, scale, transform, opacity } = useSpring({
     from: {
       scale: 10,
@@ -18,8 +18,8 @@ export const PeachIcon = ({ ...props }) => {
   return (
     <animated.svg
       style={{ transform, opacity }}
-      width={50}
-      height={50}
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 372.79 366.477"
       {...props}
@@ -77,7 +77,7 @@ export const PeachIcon = ({ ...props }) => {
   );
 };
 
-export const WatermelonIcon = ({ ...props }) => {
+export const WatermelonIcon = ({ width = 50, height = 50, ...props }) => {
   const { freq, scale, transform, opacity } = useSpring({
     from: {
       scale: 10,
@@ -92,8 +92,8 @@ export const WatermelonIcon = ({ ...props }) => {
   return (
     <animated.svg
       style={{ transform, opacity }}
-      width={50}
-      height={50}
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 392.194 311.398"
       {...props}

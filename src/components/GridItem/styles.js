@@ -7,7 +7,7 @@ export default () => ({
     cursor: pointer;
     width: 100%;
     height: 100%;
-    border: 1px solid lightgray;
+    border: 1px solid black;
     background-color: transparent;
 
     svg {

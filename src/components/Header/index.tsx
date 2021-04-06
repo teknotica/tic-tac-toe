@@ -26,28 +26,28 @@ const Header: FC<Props> = ({
     <div css={styles.header}>
       <h1>{title}</h1>
       {!winnerPlayer && allMoves.length < MAX_MOVES && (
-        <h2 css={styles.currentlyPlaying}>
-          <span>Currently playing:</span>
+        <p css={styles.currentlyPlaying}>
+          <span css={styles.text}>Next move:</span>
           <span css={styles.icon}>
-            <CurrentIcon />
+            <CurrentIcon width={30} height={30} />
           </span>
-        </h2>
+        </p>
       )}
       {allMoves.length === MAX_MOVES && !winnerPlayer && (
-        <h2>
+        <p>
           No one wins{" "}
           <span role="img" aria-label="Sad face">
             😭
           </span>
-        </h2>
+        </p>
       )}
       {winnerPlayer && (
-        <h2>
+        <p>
           You win!{" "}
           <span role="img" aria-label="Smiley face">
             😬
           </span>
-        </h2>
+        </p>
       )}
     </div>
   );

@@ -13,8 +13,12 @@ export default () => ({
   header: css``,
   currentlyPlaying: css`
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: auto auto;
+    grid-gap: 0.625rem;
     margin-top: 1rem;
+  `,
+  text: css`
+    text-align: right;
   `,
   icon: css`
     text-align: left;
