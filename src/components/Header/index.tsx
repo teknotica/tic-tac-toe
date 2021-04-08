@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { FC } from "react";
 
-import { MAX_MOVES, PLAYER_A } from "../../const";
+import { MAX_MOVES } from "../../const";
 import { Cell, Players } from "../../types";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import useStyles from "./styles";
@@ -20,7 +20,8 @@ const Header: FC<Props> = ({
   allMoves,
 }) => {
   const styles = useStyles();
-  const CurrentIcon = currentPlayer === PLAYER_A ? WatermelonIcon : PeachIcon;
+  const CurrentIcon =
+    currentPlayer === Players.PlayerA ? WatermelonIcon : PeachIcon;
 
   return (
     <div css={styles.header}>

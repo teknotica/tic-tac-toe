@@ -1,6 +1,7 @@
-import { PLAYER_A, PLAYER_B } from "./const";
-
-export type Players = "player_a" | "player_b";
+export enum Players {
+  PlayerA = "player_a",
+  PlayerB = "player_b",
+};
 
 export type Cell = {
   x: number;
@@ -8,6 +9,6 @@ export type Cell = {
 };
 
 export type PlayersMoves = {
-  [PLAYER_A]: Cell[];
-  [PLAYER_B]: Cell[];
+  [Players.PlayerA]: Cell[];
+  [Players.PlayerB]: Cell[];
 };

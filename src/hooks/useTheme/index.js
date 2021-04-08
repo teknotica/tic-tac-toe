@@ -1,12 +1,12 @@
-import { PLAYER_A, PLAYER_B } from "../../const";
+import { Players } from "../../types";
 
 export default () => ({
   playersConfig: {
-    [PLAYER_A]: {
+    [Players.PlayerA]: {
       color: "#168db2",
       tag: "O",
     },
-    [PLAYER_B]: {
+    [Players.PlayerB]: {
       color: "#ec5bed",
       tag: "X",
     },

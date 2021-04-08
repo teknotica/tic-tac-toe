@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FC, useEffect, useState } from "react";
 
-import { PLAYER_A, PLAYER_B } from "../../const";
 import { Cell, Players, PlayersMoves } from "../../types";
 import checkWinner from "../../utils/checkWinner";
 import GridItem from "../GridItem";
@@ -9,22 +8,26 @@ import Header from "../Header";
 import useStyles from "./styles";
 
 const initialMovesState = {
-  [PLAYER_A]: [],
-  [PLAYER_B]: [],
+  [Players.PlayerA]: [],
+  [Players.PlayerB]: [],
 };
 
 const TicTacToe: FC = () => {
   const styles = useStyles();
-  const [currentPlayer, setCurrentPlayer] = useState<Players>(PLAYER_A);
+  const [currentPlayer, setCurrentPlayer] = useState<Players>(Players.PlayerA);
   const [winnerPlayer, setWinnerPlayer] = useState<Players>();
   const [winnerLine, setWinnerLine] = useState<Cell[]>();
   const [playersMoves, setPlayersMoves] = useState<PlayersMoves>(
     initialMovesState
   );
-  const allMoves = [...playersMoves[PLAYER_A], ...playersMoves[PLAYER_B]];
+  const allMoves = [
+    ...playersMoves[Players.PlayerA],
+    ...playersMoves[Players.PlayerB],
+  ];
 
   useEffect(() => {
-    const lastPlayer = currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A;
+    const lastPlayer =
+      currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
     const lastPlayerMoves = playersMoves[lastPlayer];
 
     // Check for winner if they have 3+ moves
@@ -48,7 +51,8 @@ const TicTacToe: FC = () => {
     });
 
     // Switch player for next move
-    const nextPlayer = currentPlayer === PLAYER_A ? PLAYER_B : PLAYER_A;
+    const nextPlayer =
+      currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
     setCurrentPlayer(nextPlayer);
   };
 
@@ -56,7 +60,7 @@ const TicTacToe: FC = () => {
     setPlayersMoves(initialMovesState);
     setWinnerPlayer(undefined);
     setWinnerLine(undefined);
-    setCurrentPlayer(PLAYER_A);
+    setCurrentPlayer(Players.PlayerA);
   };
 
   const isPlayedBy = (currentCell: Cell, player: Players) => {
@@ -101,8 +105,8 @@ const TicTacToe: FC = () => {
                   }
                   onClick={() => saveMove({ x, y })}
                   iswinnercell={checkIsWinnerCell({ x, y })}
-                  playedbya={isPlayedBy({ x, y }, PLAYER_A)}
-                  playedbyb={isPlayedBy({ x, y }, PLAYER_B)}
+                  playedbya={isPlayedBy({ x, y }, Players.PlayerA)}
+                  playedbyb={isPlayedBy({ x, y }, Players.PlayerB)}
                 />
               </div>
             ))}
