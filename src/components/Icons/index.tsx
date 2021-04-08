@@ -1,9 +1,21 @@
+import { FC } from "react";
 import { animated, useSpring } from "react-spring";
 
 const AnimFeTurbulence = animated("feTurbulence");
 const AnimFeDisplacementMap = animated("feDisplacementMap");
 
-export const PeachIcon = ({ width = 50, height = 50, ...props }) => {
+type IconProps = {
+  id?: string;
+  width?: number;
+  height?: number;
+};
+
+export const PeachIcon: FC<IconProps> = ({
+  width = 50,
+  height = 50,
+  id = "peachIcon",
+  ...props
+}) => {
   const { freq, scale, transform, opacity } = useSpring({
     from: {
       scale: 10,
@@ -25,7 +37,7 @@ export const PeachIcon = ({ width = 50, height = 50, ...props }) => {
       {...props}
     >
       <defs>
-        <filter id="water">
+        <filter id={`water-${id}`}>
           <AnimFeTurbulence
             type="fractalNoise"
             baseFrequency={freq}
@@ -43,7 +55,7 @@ export const PeachIcon = ({ width = 50, height = 50, ...props }) => {
           />
         </filter>
       </defs>
-      <g filter="url(#water)">
+      <g filter={`url(#${`water-${id}`})`}>
         <switch>
           <g>
             <g
@@ -77,7 +89,12 @@ export const PeachIcon = ({ width = 50, height = 50, ...props }) => {
   );
 };
 
-export const WatermelonIcon = ({ width = 50, height = 50, ...props }) => {
+export const WatermelonIcon: FC<IconProps> = ({
+  width = 50,
+  height = 50,
+  id = "watermelonIcon",
+  ...props
+}) => {
   const { freq, scale, transform, opacity } = useSpring({
     from: {
       scale: 10,
@@ -99,7 +116,7 @@ export const WatermelonIcon = ({ width = 50, height = 50, ...props }) => {
       {...props}
     >
       <defs>
-        <filter id="water-2">
+        <filter id={`water-${id}`}>
           <AnimFeTurbulence
             type="fractalNoise"
             baseFrequency={freq}
@@ -117,7 +134,7 @@ export const WatermelonIcon = ({ width = 50, height = 50, ...props }) => {
           />
         </filter>
       </defs>
-      <g filter="url(#water-2)">
+      <g filter={`url(#${`water-${id}`})`}>
         <switch>
           <g>
             <g

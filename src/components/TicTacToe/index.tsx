@@ -98,6 +98,7 @@ const TicTacToe: FC = () => {
             {[...Array(3)].map((value, x) => (
               <div key={x}>
                 <GridItem
+                  id={`${x}-${y}`}
                   arial-label={`Cell in position ${x}${y}`}
                   disabled={
                     !!allMoves.find((cell) => cell.x === x && cell.y === y) ||
