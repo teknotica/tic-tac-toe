@@ -24,11 +24,11 @@ const TicTacToe: FC = () => {
     ...playersMoves[Players.PlayerA],
     ...playersMoves[Players.PlayerB],
   ];
+  const player =
+    currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
 
   useEffect(() => {
-    const lastPlayer =
-      currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
-    const lastPlayerMoves = playersMoves[lastPlayer];
+    const lastPlayerMoves = playersMoves[player];
 
     // Check for winner if they have 3+ moves
     if (lastPlayerMoves.length >= 3) {
@@ -36,10 +36,10 @@ const TicTacToe: FC = () => {
 
       if (winnerLine && !!winnerLine.length) {
         setWinnerLine(winnerLine);
-        setWinnerPlayer(lastPlayer);
+        setWinnerPlayer(player);
       }
     }
-  }, [playersMoves, currentPlayer]);
+  }, [player, playersMoves, currentPlayer]);
 
   const saveMove = (cell: Cell) => {
     const currentPlayerMoves = playersMoves[currentPlayer];
@@ -51,9 +51,7 @@ const TicTacToe: FC = () => {
     });
 
     // Switch player for next move
-    const nextPlayer =
-      currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
-    setCurrentPlayer(nextPlayer);
+    setCurrentPlayer(player);
   };
 
   const resetGame = () => {
