@@ -7,7 +7,9 @@ export default () => ({
     cursor: pointer;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    border-color: transparent black black transparent;
+    border-style: dotted;
+    border-width: 0 2px 2px 0;
     background-color: transparent;
 
     svg {
@@ -21,6 +23,10 @@ export default () => ({
 
     &::before {
       font-size: 4rem;
+    }
+
+    &:hover {
+      background-color: rgb(145 235 149 / 60%);
     }
   `,
 });

@@ -30,6 +30,18 @@ export default () => ({
   row: css`
     display: grid;
     grid-template-rows: repeat(3, minmax(90px, 115px));
+
+    &:last-child {
+      button {
+        border-right: none;
+      }
+    }
+
+    div:last-of-type {
+      button {
+        border-bottom: none;
+      }
+    }
   `,
   resetBtn: css`
     border: none;

@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from "react";
 
 import { Cell, Players, PlayersMoves } from "../../types";
 import checkWinner from "../../utils/checkWinner";
-import GridItem from "../GridItem";
-import Header from "../Header";
+import { GridItem } from "../GridItem";
+import { Header } from "../Header";
 import useStyles from "./styles";
 
 const initialMovesState = {
@@ -12,14 +12,13 @@ const initialMovesState = {
   [Players.PlayerB]: [],
 };
 
-const TicTacToe: FC = () => {
+export const TicTacToe: FC = () => {
   const styles = useStyles();
   const [currentPlayer, setCurrentPlayer] = useState<Players>(Players.PlayerA);
   const [winnerPlayer, setWinnerPlayer] = useState<Players>();
   const [winnerLine, setWinnerLine] = useState<Cell[]>();
-  const [playersMoves, setPlayersMoves] = useState<PlayersMoves>(
-    initialMovesState
-  );
+  const [playersMoves, setPlayersMoves] =
+    useState<PlayersMoves>(initialMovesState);
   const allMoves = [
     ...playersMoves[Players.PlayerA],
     ...playersMoves[Players.PlayerB],
@@ -91,13 +90,13 @@ const TicTacToe: FC = () => {
         allMoves={allMoves}
       />
       <div id="grid" css={styles.grid}>
-        {[...Array(3)].map((value, y) => (
+        {[...Array(3)].map((_, y) => (
           <div key={y} css={styles.row}>
-            {[...Array(3)].map((value, x) => (
+            {[...Array(3)].map((_, x) => (
               <div key={x}>
                 <GridItem
                   id={`${x}-${y}`}
-                  arial-label={`Cell in position ${x}${y}`}
+                  arial-label={`Cell in row ${x} column ${y}`}
                   disabled={
                     !!allMoves.find((cell) => cell.x === x && cell.y === y) ||
                     !!winnerPlayer
@@ -118,5 +117,3 @@ const TicTacToe: FC = () => {
     </div>
   );
 };
-
-export default TicTacToe;

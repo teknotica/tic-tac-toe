@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 
-import CreditHeader from "./components/CreditHeader";
-import GlobalStyles from "./components/GlobalStyles";
-import TicTacToe from "./components/TicTacToe";
+import { CreditHeader } from "./components/CreditHeader";
+import { GlobalStyles } from "./components/GlobalStyles";
+import { TicTacToe } from "./components/TicTacToe";
 
 const App = () => (
   <Fragment>

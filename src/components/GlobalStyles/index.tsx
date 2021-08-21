@@ -1,6 +1,6 @@
 import { css, Global } from "@emotion/react";
 
-const GlobalStyles = () => {
+export const GlobalStyles = () => {
   return (
     <Global
       styles={css`
@@ -29,5 +29,3 @@ const GlobalStyles = () => {
     />
   );
 };
-
-export default GlobalStyles;
