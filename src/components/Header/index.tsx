@@ -6,14 +6,7 @@ import { Cell, Players } from "../../types";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import useStyles from "./styles";
 
-type Props = {
-  title: string;
-  currentPlayer: Players;
-  winnerPlayer: Players | undefined;
-  allMoves: Cell[];
-};
-
-const Header: FC<Props> = ({
+export const Header: FC<Props> = ({
   title,
   currentPlayer,
   winnerPlayer,
@@ -54,4 +47,9 @@ const Header: FC<Props> = ({
   );
 };
 
-export default Header;
+type Props = {
+  title: string;
+  currentPlayer: Players;
+  winnerPlayer: Players | undefined;
+  allMoves: Cell[];
+};

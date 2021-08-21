@@ -4,18 +4,7 @@ import { FC } from "react";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import useStyles from "./styles";
 
-type BooleanNumber = 0 | 1;
-
-type Props = {
-  id: string;
-  disabled: boolean;
-  onClick: () => void;
-  iswinnercell: BooleanNumber;
-  playedbya: BooleanNumber;
-  playedbyb: BooleanNumber;
-};
-
-const GridItem: FC<Props> = ({
+export const GridItem: FC<Props> = ({
   id,
   iswinnercell,
   playedbya,
@@ -32,4 +21,13 @@ const GridItem: FC<Props> = ({
   );
 };
 
-export default GridItem;
+type BooleanNumber = 0 | 1;
+
+type Props = {
+  id: string;
+  disabled: boolean;
+  onClick: () => void;
+  iswinnercell: BooleanNumber;
+  playedbya: BooleanNumber;
+  playedbyb: BooleanNumber;
+};

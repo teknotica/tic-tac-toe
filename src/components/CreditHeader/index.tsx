@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import useStyles from "./styles";
 
-const CreditHeader: FC = () => {
+export const CreditHeader: FC = () => {
   const styles = useStyles();
 
   return (
@@ -17,5 +17,3 @@ const CreditHeader: FC = () => {
     </div>
   );
 };
-
-export default CreditHeader;
