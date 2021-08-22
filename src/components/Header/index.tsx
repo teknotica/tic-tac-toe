@@ -21,7 +21,7 @@ export const Header: FC<Props> = ({
       <h1>{title}</h1>
       {!winnerPlayer && allMoves.length < MAX_MOVES && (
         <p css={styles.currentlyPlaying}>
-          <span css={styles.text}>Next move:</span>
+          <span css={styles.text}>Currently playing:</span>
           <span css={styles.icon}>
             <CurrentIcon width={30} height={30} />
           </span>

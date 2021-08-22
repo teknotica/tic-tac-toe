@@ -25,8 +25,8 @@ export default () => ({
       font-size: 4rem;
     }
 
-    &:hover {
-      background-color: rgb(145 235 149 / 60%);
+    &:not([disabled]):hover {
+      background-color: rgb(145 235 149 / 10%);
     }
   `,
 });
