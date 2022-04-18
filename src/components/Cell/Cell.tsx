@@ -4,7 +4,7 @@ import { FC } from "react";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import useStyles from "./styles";
 
-export const GridItem: FC<Props> = ({
+export const Cell: FC<Props> = ({
   id,
   iswinnercell,
   playedbya,

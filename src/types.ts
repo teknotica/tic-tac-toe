@@ -3,12 +3,18 @@ export enum Players {
   PlayerB = "player_b",
 };
 
-export type Cell = {
+export type CellItem = {
   x: number;
   y: number;
 };
 
 export type PlayersMoves = {
-  [Players.PlayerA]: Cell[];
-  [Players.PlayerB]: Cell[];
+  [Players.PlayerA]: CellItem[];
+  [Players.PlayerB]: CellItem[];
+};
+
+export type IconProps = {
+  id?: string;
+  width?: number;
+  height?: number;
 };

@@ -1,4 +1,4 @@
-import { Cell } from "../../types";
+import { CellItem } from "../../types";
 
 const winnerLines = [
   [{"x":0,"y":0},{"x":1,"y":1},{"x":2,"y":2}],
@@ -11,7 +11,7 @@ const winnerLines = [
   [{"x":0,"y":2},{"x":1,"y":2},{"x":2,"y":2}]
 ];
 
-export const checkWinnerLine = (moves: Cell[]) => {
+export const checkWinnerLine = (moves: CellItem[]) => {
   const winnerLine = winnerLines.filter(lineArray => {
     let found = true;
 
