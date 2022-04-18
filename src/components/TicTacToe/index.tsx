@@ -31,7 +31,10 @@ export const TicTacToe: FC = () => {
 
     // Check for winner if they have 3+ moves
     if (lastPlayerMoves.length >= 3) {
+      console.log(lastPlayerMoves);
       const winnerLine = checkWinnerLine(lastPlayerMoves);
+
+      console.log({ winnerLine });
 
       if (winnerLine && !!winnerLine.length) {
         setWinnerLine(winnerLine);
