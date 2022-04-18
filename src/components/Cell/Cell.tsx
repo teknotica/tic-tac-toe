@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 import { PeachIcon, WatermelonIcon } from "../Icons";
-import useStyles from "./styles";
+import { styles } from "./Cell.styles";
 
 export const Cell: FC<Props> = ({
   id,
@@ -10,16 +10,12 @@ export const Cell: FC<Props> = ({
   playedbya,
   playedbyb,
   ...props
-}) => {
-  const styles = useStyles();
-
-  return (
-    <button css={styles.button(!!iswinnercell)} {...props}>
-      {playedbya && <WatermelonIcon id={id} />}
-      {playedbyb && <PeachIcon id={id} />}
-    </button>
-  );
-};
+}) => (
+  <button css={styles.button(!!iswinnercell)} {...props}>
+    {playedbya && <WatermelonIcon id={id} />}
+    {playedbyb && <PeachIcon id={id} />}
+  </button>
+);
 
 type Props = {
   id: string;

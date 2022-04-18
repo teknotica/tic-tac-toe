@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export default () => ({
+export const styles = {
   root: css`
     height: 100%;
     display: grid;
@@ -56,4 +56,4 @@ export default () => ({
     text-decoration: underline;
     font-size: 1.3rem;
   `,
-});
+};

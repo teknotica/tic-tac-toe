@@ -4,7 +4,7 @@ import { FC } from "react";
 import { MAX_MOVES } from "../../const";
 import { CellItem, Players } from "../../types";
 import { PeachIcon, WatermelonIcon } from "../Icons";
-import useStyles from "./styles";
+import { styles } from "./Header.styles";
 
 export const Header: FC<Props> = ({
   title,
@@ -12,7 +12,6 @@ export const Header: FC<Props> = ({
   winnerPlayer,
   allMoves,
 }) => {
-  const styles = useStyles();
   const CurrentIcon =
     currentPlayer === Players.PlayerA ? WatermelonIcon : PeachIcon;
 

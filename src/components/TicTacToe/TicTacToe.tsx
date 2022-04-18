@@ -5,7 +5,7 @@ import { CellItem, Players, PlayersMoves } from "../../types";
 import { checkWinnerLine } from "../../utils/checkWinnerLine";
 import { Cell } from "../Cell";
 import { Header } from "../Header";
-import useStyles from "./styles";
+import { styles } from "./TicTacToe.styles";
 
 const initialMovesState = {
   [Players.PlayerA]: [],
@@ -13,7 +13,6 @@ const initialMovesState = {
 };
 
 export const TicTacToe: FC = () => {
-  const styles = useStyles();
   const [currentPlayer, setCurrentPlayer] = useState<Players>(Players.PlayerA);
   const [winnerPlayer, setWinnerPlayer] = useState<Players>();
   const [winnerLine, setWinnerLine] = useState<CellItem[]>();

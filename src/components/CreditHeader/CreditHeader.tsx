@@ -1,11 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { FC } from "react";
 
-import useStyles from "./styles";
+import { styles } from "./CreditHeader.styles";
 
 export const CreditHeader: FC = () => {
-  const styles = useStyles();
-
   return (
     <div css={styles.header}>
       <span>

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export default () => ({
+export const styles = {
   root: css`
     height: 100%;
     display: grid;
@@ -31,4 +31,4 @@ export default () => ({
     display: grid;
     grid-template-rows: repeat(3, minmax(90px, 115px));
   `,
-});
+};

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export default () => ({
+export const styles = {
   header: css`
     position: absolute;
     width: 100%;
@@ -10,4 +10,4 @@ export default () => ({
     padding: 10px;
     font-weight: bold;
   `,
-});
+};

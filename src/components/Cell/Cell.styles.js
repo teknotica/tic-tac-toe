@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 
-export default () => ({
+export const styles = {
   button: (iswinnercell) => css`
     font-family: "Playfair Display";
     position: relative;
@@ -29,4 +29,4 @@ export default () => ({
       background-color: rgb(145 235 149 / 10%);
     }
   `,
-});
+};
