@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from "react";
 
 import { Cell, Players, PlayersMoves } from "../../types";
-import checkWinner from "../../utils/checkWinner";
+import { checkWinnerLine } from "../../utils/checkWinnerLine";
 import { GridItem } from "../GridItem";
 import { Header } from "../Header";
 import useStyles from "./styles";
@@ -31,7 +31,7 @@ export const TicTacToe: FC = () => {
 
     // Check for winner if they have 3+ moves
     if (lastPlayerMoves.length >= 3) {
-      const winnerLine = checkWinner(lastPlayerMoves);
+      const winnerLine = checkWinnerLine(lastPlayerMoves);
 
       if (winnerLine && !!winnerLine.length) {
         setWinnerLine(winnerLine);
@@ -61,12 +61,11 @@ export const TicTacToe: FC = () => {
   };
 
   const isPlayedBy = (currentCell: Cell, player: Players) => {
-    const cellInMoves = !!playersMoves[player].find(
+    const cellInMoves = playersMoves[player].find(
       (move) => move.x === currentCell.x && move.y === currentCell.y
     );
 
-    // Prevents React complaining about non-booleans attributes
-    return cellInMoves ? 1 : 0;
+    return Boolean(cellInMoves);
   };
 
   const checkIsWinnerCell = (currentCell: Cell) => {
@@ -77,8 +76,7 @@ export const TicTacToe: FC = () => {
           winnerCell.x === currentCell.x && winnerCell.y === currentCell.y
       );
 
-    // Prevents React complaining about non-booleans attributes
-    return isWinnerCell ? 1 : 0;
+    return Boolean(isWinnerCell);
   };
 
   return (

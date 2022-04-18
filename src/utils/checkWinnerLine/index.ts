@@ -11,7 +11,7 @@ const winnerLines = [
   [{"x":0,"y":2},{"x":1,"y":2},{"x":2,"y":2}]
 ];
 
-export default (moves: Cell[]) => {
+export const checkWinnerLine = (moves: Cell[]) => {
   const winnerLine = winnerLines.filter(lineArray => {
     let found = true;
 

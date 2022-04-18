@@ -15,19 +15,17 @@ export const GridItem: FC<Props> = ({
 
   return (
     <button css={styles.button(!!iswinnercell)} {...props}>
-      {!!playedbya && <WatermelonIcon id={id} />}
-      {!!playedbyb && <PeachIcon id={id} />}
+      {playedbya && <WatermelonIcon id={id} />}
+      {playedbyb && <PeachIcon id={id} />}
     </button>
   );
 };
-
-type BooleanNumber = 0 | 1;
 
 type Props = {
   id: string;
   disabled: boolean;
   onClick: () => void;
-  iswinnercell: BooleanNumber;
-  playedbya: BooleanNumber;
-  playedbyb: BooleanNumber;
+  iswinnercell: Boolean;
+  playedbya: Boolean;
+  playedbyb: Boolean;
 };
