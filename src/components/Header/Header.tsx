@@ -16,7 +16,7 @@ export const Header: FC<Props> = ({
     currentPlayer === Players.PlayerA ? WatermelonIcon : PeachIcon;
 
   return (
-    <div css={styles.header}>
+    <div>
       <h1>{title}</h1>
       {!winnerPlayer && allMoves.length < MAX_MOVES && (
         <p css={styles.currentlyPlaying}>

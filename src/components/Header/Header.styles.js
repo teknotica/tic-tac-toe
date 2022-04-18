@@ -10,7 +10,6 @@ export const styles = {
     text-align: center;
     background-color: #f3e7de;
   `,
-  header: css``,
   currentlyPlaying: css`
     display: grid;
     grid-template-columns: auto auto;
