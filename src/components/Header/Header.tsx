@@ -17,7 +17,7 @@ export const Header: FC<Props> = ({
     <div css={styles.info}>
       {!winnerPlayer && allMoves.length < MAX_MOVES && (
         <>
-          <span css={styles.text}>Currently playing:</span>
+          <span css={styles.text}>Next move: </span>
           <span css={styles.icon}>{getIcon(currentPlayer)}</span>
         </>
       )}
