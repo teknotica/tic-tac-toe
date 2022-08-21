@@ -1,4 +1,4 @@
-export enum Players {
+export enum Player {
   PlayerA = "player_a",
   PlayerB = "player_b",
 };
@@ -9,8 +9,8 @@ export type CellItem = {
 };
 
 export type PlayersMoves = {
-  [Players.PlayerA]: CellItem[];
-  [Players.PlayerB]: CellItem[];
+  [Player.PlayerA]: CellItem[];
+  [Player.PlayerB]: CellItem[];
 };
 
 export type IconProps = {

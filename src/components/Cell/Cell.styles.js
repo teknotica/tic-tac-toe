@@ -8,7 +8,6 @@ export const styles = {
     width: 100%;
     height: 100%;
     border-color: transparent black black transparent;
-    border-style: dotted;
     border-width: 0 2px 2px 0;
     background-color: transparent;
 

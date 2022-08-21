@@ -19,9 +19,9 @@ export const Cell: FC<Props> = ({
 
 type Props = {
   id: string;
+  isWinnerCell: boolean;
+  playedByA: boolean;
+  playedByB: boolean;
   disabled: boolean;
   onClick: () => void;
-  isWinnerCell: Boolean;
-  playedByA: Boolean;
-  playedByB: Boolean;
 };

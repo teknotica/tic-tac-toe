@@ -1,29 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { FC, useEffect, useState } from "react";
 
-import { CellItem, Players, PlayersMoves } from "../../types";
+import { CellItem, Player, PlayersMoves } from "../../types";
 import { checkWinnerLine } from "../../utils/checkWinnerLine";
 import { Cell } from "../Cell";
 import { Header } from "../Header";
 import { styles } from "./TicTacToe.styles";
 
 const initialMovesState = {
-  [Players.PlayerA]: [],
-  [Players.PlayerB]: [],
+  [Player.PlayerA]: [],
+  [Player.PlayerB]: [],
 };
 
 export const TicTacToe: FC = () => {
-  const [currentPlayer, setCurrentPlayer] = useState<Players>(Players.PlayerA);
-  const [winnerPlayer, setWinnerPlayer] = useState<Players>();
+  const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.PlayerA);
+  const [winnerPlayer, setWinnerPlayer] = useState<Player>();
   const [winnerLine, setWinnerLine] = useState<CellItem[]>();
   const [playersMoves, setPlayersMoves] =
     useState<PlayersMoves>(initialMovesState);
   const allMoves = [
-    ...playersMoves[Players.PlayerA],
-    ...playersMoves[Players.PlayerB],
+    ...playersMoves[Player.PlayerA],
+    ...playersMoves[Player.PlayerB],
   ];
   const player =
-    currentPlayer === Players.PlayerA ? Players.PlayerB : Players.PlayerA;
+    currentPlayer === Player.PlayerA ? Player.PlayerB : Player.PlayerA;
 
   useEffect(() => {
     const lastPlayerMoves = playersMoves[player];
@@ -56,10 +56,10 @@ export const TicTacToe: FC = () => {
     setPlayersMoves(initialMovesState);
     setWinnerPlayer(undefined);
     setWinnerLine(undefined);
-    setCurrentPlayer(Players.PlayerA);
+    setCurrentPlayer(Player.PlayerA);
   };
 
-  const isPlayedBy = (currentCell: CellItem, player: Players) => {
+  const isPlayedBy = (currentCell: CellItem, player: Player) => {
     const cellInMoves = playersMoves[player].find(
       (move) => move.x === currentCell.x && move.y === currentCell.y
     );
@@ -100,16 +100,20 @@ export const TicTacToe: FC = () => {
                   }
                   onClick={() => saveMove({ x, y })}
                   isWinnerCell={checkIsWinnerCell({ x, y })}
-                  playedByA={isPlayedBy({ x, y }, Players.PlayerA)}
-                  playedByB={isPlayedBy({ x, y }, Players.PlayerB)}
+                  playedByA={isPlayedBy({ x, y }, Player.PlayerA)}
+                  playedByB={isPlayedBy({ x, y }, Player.PlayerB)}
                 />
               </div>
             ))}
           </div>
         ))}
       </div>
-      <button css={styles.resetBtn} onClick={resetGame}>
-        [Reset game]
+      <button
+        css={styles.resetBtn}
+        disabled={allMoves.length === 0}
+        onClick={resetGame}
+      >
+        Reset game
       </button>
     </div>
   );

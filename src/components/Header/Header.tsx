@@ -2,7 +2,7 @@
 import { FC } from "react";
 
 import { MAX_MOVES } from "../../const";
-import { CellItem, Players } from "../../types";
+import { CellItem, Player } from "../../types";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import { styles } from "./Header.styles";
 
@@ -11,44 +11,50 @@ export const Header: FC<Props> = ({
   currentPlayer,
   winnerPlayer,
   allMoves,
-}) => {
-  const CurrentIcon =
-    currentPlayer === Players.PlayerA ? WatermelonIcon : PeachIcon;
-
-  return (
-    <div>
-      <h1>{title}</h1>
+}) => (
+  <div>
+    <h1>{title}</h1>
+    <div css={styles.info}>
       {!winnerPlayer && allMoves.length < MAX_MOVES && (
-        <p css={styles.currentlyPlaying}>
+        <>
           <span css={styles.text}>Currently playing:</span>
-          <span css={styles.icon}>
-            <CurrentIcon width={30} height={30} />
-          </span>
-        </p>
+          <span css={styles.icon}>{getIcon(currentPlayer)}</span>
+        </>
       )}
       {allMoves.length === MAX_MOVES && !winnerPlayer && (
-        <p>
-          No one wins{" "}
-          <span role="img" aria-label="Sad face">
-            😭
+        <>
+          <span css={styles.text}>No one wins!</span>
+          <span css={styles.icon}>
+            <span role="img" aria-label="Sad face">
+              😭
+            </span>
           </span>
-        </p>
+        </>
       )}
       {winnerPlayer && (
-        <p>
-          You win!{" "}
-          <span role="img" aria-label="Smiley face">
-            😬
-          </span>
-        </p>
+        <>
+          <span css={styles.text}>You win!</span>{" "}
+          <span css={styles.icon}>{getIcon(winnerPlayer)}</span>
+        </>
       )}
     </div>
-  );
-};
+  </div>
+);
 
 type Props = {
   title: string;
-  currentPlayer: Players;
-  winnerPlayer: Players | undefined;
+  currentPlayer: Player;
+  winnerPlayer: Player | undefined;
   allMoves: CellItem[];
+};
+
+const iconsMapper = {
+  player_a: WatermelonIcon,
+  player_b: PeachIcon,
+};
+
+const getIcon = (player: Player) => {
+  const Icon = iconsMapper[player];
+
+  return <Icon width={30} height={30} />;
 };

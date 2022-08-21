@@ -44,16 +44,22 @@ export const styles = {
     }
   `,
   resetBtn: css`
-    border: none;
+    border: 2px solid black;
     background: transparent;
-    padding: 0;
+    padding: 10px 20px;
     font: inherit;
     font-size: inherit;
     cursor: pointer;
     display: inherit;
     letter-spacing: inherit;
     line-height: inherit;
-    text-decoration: underline;
     font-size: 1.3rem;
+    display: flex;
+    margin: auto;
+    border-radius: 50px;
+
+    &:disabled {
+      border-color: grey;
+    }
   `,
 };
