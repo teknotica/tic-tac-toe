@@ -99,9 +99,9 @@ export const TicTacToe: FC = () => {
                     !!winnerPlayer
                   }
                   onClick={() => saveMove({ x, y })}
-                  iswinnercell={checkIsWinnerCell({ x, y })}
-                  playedbya={isPlayedBy({ x, y }, Players.PlayerA)}
-                  playedbyb={isPlayedBy({ x, y }, Players.PlayerB)}
+                  isWinnerCell={checkIsWinnerCell({ x, y })}
+                  playedByA={isPlayedBy({ x, y }, Players.PlayerA)}
+                  playedByB={isPlayedBy({ x, y }, Players.PlayerB)}
                 />
               </div>
             ))}

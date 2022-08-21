@@ -6,14 +6,14 @@ import { styles } from "./Cell.styles";
 
 export const Cell: FC<Props> = ({
   id,
-  iswinnercell,
-  playedbya,
-  playedbyb,
+  isWinnerCell,
+  playedByA,
+  playedByB,
   ...props
 }) => (
-  <button css={styles.button(!!iswinnercell)} {...props}>
-    {playedbya && <WatermelonIcon id={id} />}
-    {playedbyb && <PeachIcon id={id} />}
+  <button css={styles.button(!!isWinnerCell)} {...props}>
+    {playedByA && <WatermelonIcon id={id} />}
+    {playedByB && <PeachIcon id={id} />}
   </button>
 );
 
@@ -21,7 +21,7 @@ type Props = {
   id: string;
   disabled: boolean;
   onClick: () => void;
-  iswinnercell: Boolean;
-  playedbya: Boolean;
-  playedbyb: Boolean;
+  isWinnerCell: Boolean;
+  playedByA: Boolean;
+  playedByB: Boolean;
 };
