@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 
 export const styles = {
-  button: (iswinnercell) => css`
+  button: (iswinnercell: boolean) => css`
     font-family: "Playfair Display";
     position: relative;
     cursor: pointer;
