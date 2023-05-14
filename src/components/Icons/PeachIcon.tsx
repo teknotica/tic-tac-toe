@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FunctionComponent } from "react";
 import { animated, useSpring } from "react-spring";
 
 import { IconProps } from "../../types";
@@ -6,7 +6,7 @@ import { IconProps } from "../../types";
 const AnimFeTurbulence = animated("feTurbulence");
 const AnimFeDisplacementMap = animated("feDisplacementMap");
 
-export const PeachIcon: FC<IconProps> = ({
+export const PeachIcon: FunctionComponent<IconProps> = ({
   width = 50,
   height = 50,
   id = "peachIcon",

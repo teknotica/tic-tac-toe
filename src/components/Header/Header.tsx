@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { FC } from "react";
+import type { FunctionComponent } from "react";
 
 import { MAX_MOVES } from "../../const";
 import { CellItem, Player } from "../../types";
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import { styles } from "./Header.styles";
 
-export const Header: FC<Props> = ({
+export const Header: FunctionComponent<Props> = ({
   title,
   currentPlayer,
   winnerPlayer,

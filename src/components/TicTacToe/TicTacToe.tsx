@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { FC, useEffect, useState } from "react";
+import type { FunctionComponent } from "react";
+import { useEffect, useState } from "react";
 
 import { CellItem, Player, PlayersMoves } from "../../types";
 import { checkWinnerLine } from "../../utils/checkWinnerLine";
@@ -12,7 +13,7 @@ const initialMovesState = {
   [Player.PlayerB]: [],
 };
 
-export const TicTacToe: FC = () => {
+export const TicTacToe: FunctionComponent = () => {
   const [currentPlayer, setCurrentPlayer] = useState<Player>(Player.PlayerA);
   const [winnerPlayer, setWinnerPlayer] = useState<Player>();
   const [winnerLine, setWinnerLine] = useState<CellItem[]>();

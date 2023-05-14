@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { FC } from "react";
+import type { FunctionComponent } from "react";
 
 import { PeachIcon, WatermelonIcon } from "../Icons";
 import { styles } from "./Cell.styles";
 
-export const Cell: FC<Props> = ({
+export const Cell: FunctionComponent<Props> = ({
   id,
   isWinnerCell,
   playedByA,
