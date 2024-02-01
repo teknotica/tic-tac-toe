@@ -2,3 +2,5 @@
 
 # Tic Tac Toe
 Tic tac toe little app using TS
+
+https://la-vieja.netlify.app
